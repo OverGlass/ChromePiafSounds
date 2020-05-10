@@ -51,11 +51,23 @@ windowData.then(data => {
     piafname: document.title,
     urls: data.On_mp3
   }
+  //loader
+  let loader = document.createElement("div");
+  let innerloader = document.createElement("div");
+  let innerloader2 = document.createElement("div");
+  loader.className = "lds-ripple";
+  loader.prepend(innerloader)
+  loader.prepend(innerloader2)
+  let body = document.querySelector("body");
+  body.prepend(loader);
+
   if (payload.urls) {
     fetch("http://localhost:8080/convert", {
       method: "post",
       body: JSON.stringify(payload)
     }).then((res) => {
+      let nodeLoader = document.querySelector('.lds-ripple')
+      nodeLoader.classList.add("off")
       const status = res.status;
       if (status === 201) {
         res.arrayBuffer().then((data) => {
