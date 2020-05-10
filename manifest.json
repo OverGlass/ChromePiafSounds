@@ -1,0 +1,22 @@
+{
+  "name": "getPiafSounds",
+  "version": "1.0",
+  "description": "Récupère les fichiers audios des oiseaux",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "permissions": ["activeTab", "storage", "notifications"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.oiseaux.net/oiseaux/**"],
+      "css": ["banner.css"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "manifest_version": 2
+}
